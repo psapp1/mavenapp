@@ -1,8 +1,8 @@
 @Library('pipeline-library-demo')_
 
 def abc(String name = 'human') {
-  echo "welcome to ${name}."
-  echo "welcome to, ${name}."
+  echo "welcome to ${name} Program."
+  echo "welcome to, ${name} practice."
 }
 node {
     def mvnHome
