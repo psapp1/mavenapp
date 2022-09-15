@@ -26,6 +26,8 @@ pipeline {
                sh 'mvn -f pom.xml -s settings.xml clean package'                
                sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.125.189.126:9000 -Dsonar.login=${SQ_CREDS}'
             }
+      
+            
         
         post {
                 // If Maven was able to run the tests, even if some of the test
@@ -36,5 +38,12 @@ pipeline {
                 }
             }
         }
+        stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
     }
 }
