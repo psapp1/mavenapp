@@ -4,6 +4,7 @@ pipeline {
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3.8.6"
+        scannerHome "SonarScanner 4.0"
     }
     environment {
     SQ_CREDS = credentials('sonarqube-creds')
@@ -15,7 +16,6 @@ pipeline {
             }
         }
         stage('SonarQube analysis') {
-             def scannerHome = tool 'SonarScanner 4.0';
               withSonarQubeEnv('sonar') { 
                      sh "${scannerHome}/bin/sonar-scanner"
                }
