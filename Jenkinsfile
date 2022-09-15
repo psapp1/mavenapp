@@ -24,7 +24,8 @@ pipeline {
         stage('build') {
             steps {
                sh 'mvn -f pom.xml -s settings.xml clean package'                
-               sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.125.189.126:9000 -Dsonar.login=${SQ_CREDS}'
+               //sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.125.189.126:9000 -Dsonar.login=${SQ_CREDS}'
+               mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=psapp1_mavenapp
             }
       
             
