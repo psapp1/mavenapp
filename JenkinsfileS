@@ -1,6 +1,16 @@
 @Library('pipeline-library-demo')_
+
+def abc(String name = 'human') {
+  echo "Hello, ${name}."
+  echo "Hello, ${name}."
+}
 node {
     def mvnHome
+    
+     stage("Ref lib"){
+      abc "DevOps"
+    }
+    
     stage("shared lib"){
       sayHello "DevOps"
     }
